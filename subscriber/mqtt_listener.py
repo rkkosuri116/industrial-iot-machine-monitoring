@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
-import json\
+import json
+from database.insert_data import insert_machine_data
 
 BROKER = "localhost"
 PORT = 1883
@@ -25,6 +26,8 @@ def on_message(client, userdata, msg):
     print(f"Status     : {data['status']}")
 
     print("-------------------------")
+
+    insert_machine_data(data)
 
 client = mqtt.Client()
 
